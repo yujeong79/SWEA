@@ -20,6 +20,6 @@ public class 구간합_1차원배열 {
 		System.out.println(map[8-1] - map[3]);
 		
 		//안녕
-		
+		//
 	} // end of main
 } // end of class
