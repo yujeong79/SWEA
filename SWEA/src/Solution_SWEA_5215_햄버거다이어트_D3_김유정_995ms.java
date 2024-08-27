@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
   
-public class Solution_SWEA_5215_햄버거다이어트_D3 {
+public class Solution_SWEA_5215_햄버거다이어트_D3_김유정_995ms {
       
     static int[][] map;
     static int[] nums;
