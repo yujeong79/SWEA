@@ -41,7 +41,7 @@ public class Solution_SWEA_4012_요리사_모의SW {
 			
 			min = Integer.MAX_VALUE;
 			
-			for(int i = 0; i < combList.size()/2; i++) {
+			for(int i = 0; i < combList.size()/2; i++) { // 그리고 인덱스가 반대되는 요소끼리 짝이니까 그렇게 A와 B로 보내버려
 				makeFood(combList.get(i), combList.get(combList.size()-1-i));
 			}
 			
@@ -53,9 +53,9 @@ public class Solution_SWEA_4012_요리사_모의SW {
 	
 	static void comb(int cnt, int start) { // 식재료의 조합을 구해보자
 		if(cnt == R) {
-			String str = "";
+			String str = ""; // 왜.. String으로 했더라..? 기억이 안남... 아 생각남 list에 모든 조합의 결과인 배열을 저장해서 배열을 하나씩 가져오려고 했는데 왜 그렇게 못했지?
 			for(int n : result) str += n+" ";
-			combList.add(str);
+			combList.add(str); // 일단 모든 조합을 다 담아
 			return;
 		}
 		
