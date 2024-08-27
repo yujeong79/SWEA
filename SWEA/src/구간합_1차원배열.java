@@ -13,13 +13,12 @@ public class 구간합_1차원배열 {
 		for(int i = 0; i < map.length; i++) {
 			map[i] = map[i-1] + map[i];
 		}
-		
 		System.out.println(Arrays.toString(map));
 		
 		//  구간합 : i(포함) ~ j(미포함), 3~8
 		System.out.println(map[8-1] - map[3]);
 		
-		//안녕
-		//
+		
+		
 	} // end of main
 } // end of class
