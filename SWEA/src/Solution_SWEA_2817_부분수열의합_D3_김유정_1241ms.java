@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution_SWEA_2817_부분수열의합_D3 {
+public class Solution_SWEA_2817_부분수열의합_D3_김유정_1241ms {
 	static int N;
 	static int K;
 	
