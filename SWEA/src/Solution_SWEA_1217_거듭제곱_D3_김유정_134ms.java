@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Solution_SWEA_1217_거듭제곱_D3 {
+public class Solution_SWEA_1217_거듭제곱_D3_김유정_134ms {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
