@@ -11,7 +11,7 @@ import java.util.*;
  * 규영이가 이기는 경우와 지는 경우가 총 몇 가지 인지 구해보자
  */
 
-public class Solution_SWEA_6808_규영이와인영이의카드게임_D3_김유정 {
+public class Solution_SWEA_6808_규영이와인영이의카드게임_D3_김유정_2971ms {
 	
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder sb = new StringBuilder();
