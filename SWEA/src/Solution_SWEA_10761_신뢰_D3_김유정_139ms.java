@@ -16,7 +16,7 @@ class Button{
     }
 }
  
-public class Solution_SWEA_10761_신뢰_D3 { 
+public class Solution_SWEA_10761_신뢰_D3_김유정_139ms { 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuffer sb = new StringBuffer();
