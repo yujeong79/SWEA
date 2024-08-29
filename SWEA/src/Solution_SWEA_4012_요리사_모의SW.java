@@ -9,7 +9,7 @@ public class Solution_SWEA_4012_요리사_모의SW {
 	static int[] ingredient;
 	static int[] result;
 	
-	static List<int[]> combList;
+	static List<String> combList;
 	
 	static int min;
 	
@@ -47,13 +47,15 @@ public class Solution_SWEA_4012_요리사_모의SW {
 			
 			sb.append("#").append(testCase).append(" ").append(min).append("\n");
 
+			System.out.println(sb);
 		} // end of testCase
-		System.out.println(sb);
 	} // end of main
 	
 	static void comb(int cnt, int start) { // 식재료의 조합을 구해보자
 		if(cnt == R) {
-			combList.add(result); // 일단 모든 조합을 다 담아
+			String str = ""; 
+			for(int n : result) str += n+" ";
+			combList.add(str); // 일단 모든 조합을 다 담아
 			return;
 		}
 		
@@ -63,36 +65,31 @@ public class Solution_SWEA_4012_요리사_모의SW {
 		}
 	}
 	
-	static void makeFood(int[] A, int[] B) {
-//		List<Integer> listA = new ArrayList<>();
-//		List<Integer> listB = new ArrayList<>();
-//		
-//		StringTokenizer st = new StringTokenizer(A, " ");
-//		while(st.hasMoreTokens()) listA.add(Integer.parseInt(st.nextToken()));
-//		
-//		st = new StringTokenizer(B, " ");
-//		while(st.hasMoreTokens()) listB.add(Integer.parseInt(st.nextToken()));
+	static void makeFood(String A, String B) {
+		List<Integer> listA = new ArrayList<>();
+		List<Integer> listB = new ArrayList<>();
+		
+		StringTokenizer st = new StringTokenizer(A, " ");
+		while(st.hasMoreTokens()) listA.add(Integer.parseInt(st.nextToken()));
+		
+		st = new StringTokenizer(B, " ");
+		while(st.hasMoreTokens()) listB.add(Integer.parseInt(st.nextToken()));
 		
 		int foodA = 0;
 		int foodB = 0;
 		
-		for(int i = 0; i < A.length; i++) { // foodA 시너지
-			for(int j = 0; j < A.length; j++) {
-				if(A[i] != A[j]) { // 서로 다른 식재료인 경우에 식재료의 시너지 구하기
-					System.out.println(A[i] + ", " + A[j]);
-					int i1 = A[i];
-					int i2 = A[j];
+		for(int i = 0; i < N/2; i++) {
+			for(int j = 0; j < N/2; j++) {
+				if(listA.get(i) != listA.get(j)) { // 서로 다른 식재료인 경우에 식재료의 시너지 구하기
+					int i1 = listA.get(i);
+					int i2 = listA.get(j);
 					
 					foodA += synergy[i1][i2];
 				}
-			}
-		}
-		
-		for(int i = 0; i < B.length; i++) { // foodB 시너지
-			for(int j = 0; j < B.length; j++) {
-				if(B[i] != B[j]) { // 서로 다른 식재료인 경우에 식재료의 시너지 구하기
-					int i1 = B[i];
-					int i2 = B[j];
+				
+				if(listB.get(i) != listB.get(j)) { // 서로 다른 식재료인 경우에 식재료의 시너지 구하기
+					int i1 = listB.get(i);
+					int i2 = listB.get(j);
 					
 					foodB += synergy[i1][i2];
 				}
