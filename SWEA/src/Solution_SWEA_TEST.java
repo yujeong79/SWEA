@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution {
+public class Solution_SWEA_TEST {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder(); // 각 테스트케이스의 출력값을 모아서 저장했다가 한 번에 출력하기 위한 용도
