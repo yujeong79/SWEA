@@ -51,30 +51,55 @@ public class Solution_SWEA_2806_NQueen_D3_김유정 {
 		
 		for(int i = 0; i < N; i++) { // 모든 board 칸을 순회하며
 			for(int j = 0; j < N; j++) {
+				
+				if(!QueenLocation[i][j]) { 
+					
+					QueenLocation[i][j] = true; // 놓아주기
 //				if(!board[i][j]) { // false, 해당 칸에 Queen이 없거나 공격 범위가 아니라면
 					
-				boolean[][] tmp = board; // Queen을 놓기 이전의 board 상태 임시 저장
-				flag = true;
-				
-				QueenLocation[i][j] = true; // 놓아주기
-				attackRange(i, j); // 해당 칸의 Queen의 공격 범위를 모두 true;로 바꿔주기
-				
-				if(QueenLocation[i][j]) { // 해당 자리에 Queen을 두었으면
-					System.out.println(cnt + "번째 : " + i + ", " + j + " 성공");
-					printArr(QueenLocation);
-					placeQueen(cnt-1);
 					
-					QueenLocation[i][j] = false; // 퀸 제거
-					board = tmp; // (i, j) 자리에 Queen을 두기 이전의 상태로 다시 되돌아감
+					boolean[][] tmp = new boolean[N][N];
 					
-				} else { // 해당 자리에 Queen을 두지 못했으면	
-					System.out.println(i + ", " + j + " 실패");
-					printArr(QueenLocation);
-					QueenLocation[i][j] = false; // 퀸 제거
-					board = tmp; // 원상복구
+					for(int k = 0; k < N; k++) {
+						for(int l = 0; l < N; l++) {
+							tmp[k][l] = board[k][l];
+						}
+					}
+					
+					//boolean[][] tmp = board.clone(); // Queen을 놓기 이전의 board 상태 임시 저장
+					
+					attackRange(i, j); // 해당 칸의 Queen의 공격 범위를 모두 true;로 바꿔주기
+					
+					if(QueenLocation[i][j]) { // 해당 자리에 Queen을 두었으면
+						System.out.println(cnt + "번째 : " + i + ", " + j + " 성공");
+						printArr(QueenLocation);
+						placeQueen(cnt-1);
+						
+						QueenLocation[i][j] = false; // 퀸 제거
+						
+						for(int k = 0; k < N; k++) {
+							for(int l = 0; l < N; l++) {
+								board[k][l] = tmp[k][l];
+							}
+						}
+						
+						//board = tmp; // (i, j) 자리에 Queen을 두기 이전의 상태로 다시 되돌아감
+						
+					} else { // 해당 자리에 Queen을 두지 못했으면	
+						System.out.println(i + ", " + j + " 실패");
+						printArr(QueenLocation);
+						QueenLocation[i][j] = false; // 퀸 제거
+						
+						for(int k = 0; k < N; k++) {
+							for(int l = 0; l < N; l++) {
+								board[k][l] = tmp[k][l];
+							}
+						}
+						
+						//board = tmp; // 원상복구
+					}
+				
 				}
-				
-//				}
 			}
 		}
 	}
