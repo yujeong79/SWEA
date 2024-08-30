@@ -3,9 +3,6 @@ import java.util.*;
 
 /**
  * N * N 보드에 퀸 N개가 서로 공격할 수 없게 놓는 경우의 수
- * 
- * 그걸 마저 구현해야해..
- * 내가 마지막 퀸을 놓았을 때에도 해당이 되는지
  */
 
 public class Solution_SWEA_2806_NQueen_D3_김유정 {
@@ -37,6 +34,7 @@ public class Solution_SWEA_2806_NQueen_D3_김유정 {
 			N = Integer.parseInt(br.readLine()); // 퀸 N개를 서로 공격할 수 없게 놓는 경우의 수
 			
 			board = new boolean[N][N];
+			QueenLocation = new boolean[N][N];
 			
 			placeQueen(N);
 			
@@ -60,13 +58,16 @@ public class Solution_SWEA_2806_NQueen_D3_김유정 {
 					QueenLocation[i][j] = true; // 놓아주기
 					attackRange(i, j); // 해당 칸의 Queen의 공격 범위를 모두 true;로 바꿔주기
 					
-					for(boolean[] a : board) {
-						System.out.println(Arrays.toString(a));
+					if(flag) { // 해당 자리에 Queen을 두었으면
+						System.out.println(i + ", " + j);
+						printArr(board);
+						placeQueen(cnt-1); 
+						board = tmp; // (i, j) 자리에 Queen을 두기 이전의 상태로 다시 되돌아감
+					} else { // 해당 자리에 Queen을 두지 못했으면	
+						System.out.println("실패 : " + i + ", " + j);
+						board = tmp;
+						placeQueen(cnt);
 					}
-					
-					placeQueen(cnt-1); 
-					
-					board = tmp; // (i, j) 자리에 Queen을 두기 이전의 상태로 다시 되돌아감
 				}
 			}
 		}
@@ -76,20 +77,30 @@ public class Solution_SWEA_2806_NQueen_D3_김유정 {
 		board[r][c] = true;
 		
 		int d = 0;
+		int Qr = r;
+		int Qc = c;
 		
 		while(d <= 7) {
+			r = Qr; c = Qc;
 			while(r+dr[d] < N && r+dr[d] >= 0 && c+dc[d] < N && c+dc[d] >= 0) {
 				r += dr[d];
 				c += dc[d];
 				
 				if(QueenLocation[r][c]) {// 공격 범위에 Queen이 있다면
-					flag = false;
+					flag = false; // 그 자리에 둘 수 없음
 					return;
 				}
 				
+				System.out.println(r + ", " + c);
 				board[r][c] = true;
 			}
 			d++;
+		}
+	}
+	
+	static void printArr(boolean[][] arr) {
+		for(boolean[] a : arr) {
+			System.out.println(Arrays.toString(a));
 		}
 	}
 	
