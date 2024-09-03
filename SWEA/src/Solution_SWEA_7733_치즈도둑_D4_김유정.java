@@ -7,6 +7,8 @@ public class Solution_SWEA_7733_치즈도둑_D4_김유정 {
 	private static int N;
 	private static int[][] cheese;
 	
+	private static boolean[] isVisited;
+	
 	public static void main(String[] args) throws IOException {
 		int T = Integer.parseInt(br.readLine());
 		int testCase = 0;
@@ -29,9 +31,14 @@ public class Solution_SWEA_7733_치즈도둑_D4_김유정 {
 					}
 				}
 				
-				
+				DFS(0, 0);
 			}
 			
 		} // end of testCase
 	} // end of main
+
+	private static void DFS(int r, int w) {
+		if()
+		
+	}
 } // end of class
