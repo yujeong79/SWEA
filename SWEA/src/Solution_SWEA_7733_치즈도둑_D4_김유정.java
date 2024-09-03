@@ -29,10 +29,7 @@ public class Solution_SWEA_7733_치즈도둑_D4_김유정 {
 					}
 				}
 				
-				for(int[] c : cheese) {
-					System.out.println(Arrays.toString(c));
-				}
-				System.out.println();
+				
 			}
 			
 		} // end of testCase
