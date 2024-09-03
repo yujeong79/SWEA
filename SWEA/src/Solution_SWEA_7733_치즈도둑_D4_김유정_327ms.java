@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution_SWEA_7733_치즈도둑_D4_김유정 {
+public class Solution_SWEA_7733_치즈도둑_D4_김유정_327ms {
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	private static StringBuilder sb = new StringBuilder();
 	
@@ -30,10 +30,6 @@ public class Solution_SWEA_7733_치즈도둑_D4_김유정 {
 				}
 			}
 			
-//			for(int[] c : cheese) {
-//				System.out.println(Arrays.toString(c));
-//			}
-			
 			int num = 0;
 			while(++num <= 100) {
 				for(int i = 1; i <= N; i++) {
@@ -46,7 +42,7 @@ public class Solution_SWEA_7733_치즈도둑_D4_김유정 {
 				isVisited = new boolean[N+2][N+2];
 				for(int r = 1; r <= N; r++) {
 					for(int c = 1; c <= N; c++) {
-						if(!isVisited[r][c]) { DFS(r, c); mass++; }
+						if(!isVisited[r][c] && cheese[r][c] != 0) { DFS(r, c); mass++; }
 					}
 				}
 				
