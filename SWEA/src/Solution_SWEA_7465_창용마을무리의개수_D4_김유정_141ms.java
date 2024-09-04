@@ -60,7 +60,7 @@ public class Solution_SWEA_7465_창용마을무리의개수_D4_김유정_141ms {
 		} // end of testCase
 		System.out.println(sb);
 	} // end of main
-	
+
 	private static int findSet(int n) {
 		if(n != p[n])  // 자신이 대표자가 아니면
 			p[n] = findSet(p[n]);
