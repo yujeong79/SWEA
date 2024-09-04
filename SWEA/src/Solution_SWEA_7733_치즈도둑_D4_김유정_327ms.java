@@ -60,10 +60,10 @@ public class Solution_SWEA_7733_치즈도둑_D4_김유정_327ms {
 			return;
 		
 		if(cheese[r+dr[0]][c+dc[0]] != 0 || cheese[r+dr[1]][c+dc[1]] != 0 || cheese[r+dr[2]][c+dc[2]] != 0 || cheese[r+dr[3]][c+dc[3]] != 0) {
-			if(cheese[r+dr[0]][c+dc[0]] != 0 && !isVisited[r+dr[0]][c+dc[0]]) DFS(r+dr[0], c+dc[0]);
-			if(cheese[r+dr[1]][c+dc[1]] != 0 && !isVisited[r+dr[1]][c+dc[1]]) DFS(r+dr[1], c+dc[1]);
-			if(cheese[r+dr[2]][c+dc[2]] != 0 && !isVisited[r+dr[2]][c+dc[2]]) DFS(r+dr[2], c+dc[2]);
-			if(cheese[r+dr[3]][c+dc[3]] != 0 && !isVisited[r+dr[3]][c+dc[3]]) DFS(r+dr[3], c+dc[3]);
+			for(int i = 0; i < 4; i++) {
+				if(cheese[r+dr[i]][c+dc[i]] != 0 && !isVisited[r+dr[i]][c+dc[i]])
+					DFS(r+dr[i], c+dc[i]);
+			}
 		}
 	}
 } // end of class
