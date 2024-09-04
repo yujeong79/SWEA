@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution_SWEA_1861_정사각형방_D4_김유정 {
+public class Solution_SWEA_1861_정사각형방_D4_김유정_539ms {
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	private static StringBuilder sb = new StringBuilder();
 	
