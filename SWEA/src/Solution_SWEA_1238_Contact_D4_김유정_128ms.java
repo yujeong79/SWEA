@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution_SWEA_1238_Contact_D4_김유정 {
+public class Solution_SWEA_1238_Contact_D4_김유정_128ms {
 	private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	private static StringBuilder sb = new StringBuilder();
 	
