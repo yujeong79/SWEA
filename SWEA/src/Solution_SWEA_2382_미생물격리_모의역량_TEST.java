@@ -72,11 +72,11 @@ public class Solution_SWEA_2382_미생물격리_모의역량_TEST {
 					}
 				} // 미생물 군집 이동완료
 				
-				System.out.println(m + "시간");
-				for(Group g : list) {
-					System.out.println(g);
-				}
-				System.out.println();
+//				System.out.println(m + "시간");
+//				for(Group g : list) {
+//					System.out.println(g);
+//				}
+//				System.out.println();
 				
 				// 동일한 셀에 모인 군집 합치기 
 				Map<String, Set<Group>> map = new HashMap<>(); // 같은 좌표의 미생물 군집을 map에 저장해놓고
@@ -84,6 +84,7 @@ public class Solution_SWEA_2382_미생물격리_모의역량_TEST {
 					for(int j = i+1; j < list.size(); j++) {
 						if(list.get(i).r == list.get(j).r && list.get(i).c == list.get(j).c) {
 							String location = list.get(i).r + " " + list.get(i).c;
+							//System.out.println(location);
 							if(map.get(location) == null) {
 								Set<Group> set = new HashSet<>();
 								map.put(location, set);
@@ -106,6 +107,8 @@ public class Solution_SWEA_2382_미생물격리_모의역량_TEST {
 							maxCnt = g.cnt;
 							newG.cnt += g.cnt;
 							newG.d = g.d;
+						} else {
+							newG.cnt += g.cnt;
 						}
 					}
 					
@@ -122,11 +125,11 @@ public class Solution_SWEA_2382_미생물격리_모의역량_TEST {
 					}
 				}
 				
-				System.out.println(m + "시간");
-				for(Group g : list) {
-					System.out.println(g);
-				}
-				System.out.println();
+//				System.out.println(m + "시간");
+//				for(Group g : list) {
+//					System.out.println(g);
+//				}
+//				System.out.println();
 				
 			} // 한 시간 종료
 			
