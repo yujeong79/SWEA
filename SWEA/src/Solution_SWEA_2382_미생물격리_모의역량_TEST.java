@@ -15,8 +15,8 @@ class Group {
 	public String toString() {
 		return "Group [r=" + r + ", c=" + c + ", cnt=" + cnt + ", d=" + d + "]";
 	}
-	
 }
+
 public class Solution_SWEA_2382_미생물격리_모의역량_TEST {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -42,7 +42,7 @@ public class Solution_SWEA_2382_미생물격리_모의역량_TEST {
 			}
 			
 			int m = 0;
-			while(++m <= M) { // 격리시간동안
+			while(++m <= M) { // 격리시간동안 움직이기
 				for(Group g : list) {
 					switch(g.d) {
 					case(1): // 상
@@ -72,24 +72,17 @@ public class Solution_SWEA_2382_미생물격리_모의역량_TEST {
 					}
 				} // 미생물 군집 이동완료
 				
-//				System.out.println(m + "시간");
-//				for(Group g : list) {
-//					System.out.println(g);
-//				}
-//				System.out.println();
-				
 				// 동일한 셀에 모인 군집 합치기 
 				Map<String, Set<Group>> map = new HashMap<>(); // 같은 좌표의 미생물 군집을 map에 저장해놓고
 				for(int i = 0; i < list.size()-1; i++) {
 					for(int j = i+1; j < list.size(); j++) {
-						if(list.get(i).r == list.get(j).r && list.get(i).c == list.get(j).c) {
+						if(list.get(i).r == list.get(j).r && list.get(i).c == list.get(j).c) { // 좌표가 같으면
 							String location = list.get(i).r + " " + list.get(i).c;
-							//System.out.println(location);
 							if(map.get(location) == null) {
 								Set<Group> set = new HashSet<>();
 								map.put(location, set);
 							} 
-							map.get(location).add(list.get(i));
+							map.get(location).add(list.get(i)); // 해당 좌표의 set에 넣기
 							map.get(location).add(list.get(j));
 						}
 					}
@@ -99,20 +92,20 @@ public class Solution_SWEA_2382_미생물격리_모의역량_TEST {
 					st = new StringTokenizer(key, " ");
 					int r = Integer.parseInt(st.nextToken());
 					int c = Integer.parseInt(st.nextToken());
-					Group newG = new Group(r, c, 0, 0);
+					Group newG = new Group(r, c, 0, 0); // 해당 좌표의 새로운 군집을 만들어서
 					
 					int maxCnt = 0;
 					for(Group g : map.get(key)) {
-						if(maxCnt < g.cnt) {
+						if(maxCnt < g.cnt) { // 가장 큰 군집의 방향을 저장해두기
 							maxCnt = g.cnt;
 							newG.cnt += g.cnt;
 							newG.d = g.d;
-						} else {
+						} else { // 가장 큰 군집이 아니면 크기만 누적하기
 							newG.cnt += g.cnt;
 						}
 					}
 					
-					list.add(newG);
+					list.add(newG); // 새로운 군집 넣기
 					for(Group g : map.get(key)) {
 						g.cnt = 0;
 					}
@@ -124,13 +117,6 @@ public class Solution_SWEA_2382_미생물격리_모의역량_TEST {
 						list.remove(i);
 					}
 				}
-				
-//				System.out.println(m + "시간");
-//				for(Group g : list) {
-//					System.out.println(g);
-//				}
-//				System.out.println();
-				
 			} // 한 시간 종료
 			
 			int total = 0;
