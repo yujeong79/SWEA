@@ -17,7 +17,7 @@ class Group {
 	}
 }
 
-public class Solution_SWEA_2382_미생물격리_모의역량_TEST {
+public class Solution_SWEA_2382_미생물격리_김유정_3014ms {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
