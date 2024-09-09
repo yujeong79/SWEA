@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution_SWEA_1767_프로세서연결하기_김유정_000ms {
+public class Solution_SWEA_1767_프로세서연결하기_김유정_565ms {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder sb = new StringBuilder();
 	
@@ -34,7 +34,7 @@ public class Solution_SWEA_1767_프로세서연결하기_김유정_000ms {
 			
 			maxCore = Integer.MIN_VALUE;
 			answer = Integer.MAX_VALUE;
-			backTracking(0, 0, 0, 0);
+			backTracking(1, 1, 0, 0);
 			
 			sb.append("#" + testCase + " " + answer + "\n");
 		} // end of testCase
@@ -42,12 +42,12 @@ public class Solution_SWEA_1767_프로세서연결하기_김유정_000ms {
 	} // end of main
 
 	private static void backTracking(int r, int c, int num, int length) {
-		if(c > N-1) { // 해당 행 탐색 중 열을 벗어나면 다음 행 탐색 시작
+		if(c > N-2) { // 해당 행 탐색 중 열을 벗어나면 다음 행 탐색 시작
 			backTracking(r+1, 0, num, length);
 			return;
 		}
 		
-		if(r > N-1) { // 모든 행을 다 탐색하면 종료
+		if(r > N-2) { // 모든 행을 다 탐색하면 종료
 			if(maxCore < num) {
 				maxCore = num;
 				answer = length;
