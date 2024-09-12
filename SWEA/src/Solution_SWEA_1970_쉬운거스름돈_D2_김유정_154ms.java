@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution_SWEA_1970_쉬운거스름돈_D2_김유정_162ms {
+public class Solution_SWEA_1970_쉬운거스름돈_D2_김유정_154ms {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder sb = new StringBuilder();
 	
@@ -16,12 +16,10 @@ public class Solution_SWEA_1970_쉬운거스름돈_D2_김유정_162ms {
 			int N = Integer.parseInt(br.readLine().trim());
 			int[] count = new int[8];
 			
-			int bi = 0; // balance의 인덱스
-			while(bi <= 7) {
-				count[bi] = N/balance[bi];
-				sb.append(count[bi] + " ");
+			int bi = -1; // balance의 인덱스
+			while(++bi <= 7) {
+				sb.append(N/balance[bi] + " ");
 				N %= balance[bi];
-				bi++;
 			}
 			sb.append("\n");
 			
