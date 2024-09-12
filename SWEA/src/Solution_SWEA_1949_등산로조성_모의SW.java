@@ -26,7 +26,6 @@ public class Solution_SWEA_1949_등산로조성_모의SW {
 	static int N, K;
 	static int[][] map;
 	
-	static boolean[][] isVisited;
 	static int maxLength;
 	
 	public static void main(String[] args) throws IOException {
@@ -67,8 +66,9 @@ public class Solution_SWEA_1949_등산로조성_모의SW {
 	private static void DFS(int i, int j, int roadLength) {
 		Stack<Point> stack = new Stack<>();
 		
+		boolean[][] isVisited = new boolean[N][N];
 		stack.add(new Point(i, j, 1, false, map[i][j]));
-		
+		//isVisited[i][j] = true;
 //		int[][] tempMap = new int[N][N];
 //		for(int r = 0; r < N; r++) {
 //			tempMap[r] = map[r].clone();
@@ -77,20 +77,22 @@ public class Solution_SWEA_1949_등산로조성_모의SW {
 		while(!stack.isEmpty()) {
 			Point curr = stack.pop();
 			maxLength = Math.max(curr.l, maxLength);
+			isVisited[curr.r][curr.c] = true;
 			System.out.println(curr);
 			
 			for(int d = 0; d < 4; d++) {
 				int r = curr.r + dr[d];
 				int c = curr.c + dc[d];
-				if(r >= 0 && r < N && c >= 0 && c < N) {
+				if(r >= 0 && r < N && c >= 0 && c < N && !isVisited[r][c]) {
 					if(curr.v > map[r][c]) {
 						stack.add(new Point(r, c, curr.l+1, curr.construction, map[r][c]));
 					} else if(!curr.construction && curr.v > map[r][c]-K) {
 						stack.add(new Point(r, c, curr.l+1, true, curr.v-1));
-						//tempMap[r][c] = tempMap[curr.r][curr.c]-1;
 					}
 				}
 			}
+			
+			isVisited[curr.r][curr.c] = false;
 		}
 	}
 	
