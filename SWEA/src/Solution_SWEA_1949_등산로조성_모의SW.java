@@ -3,33 +3,20 @@ import java.util.*;
 
 public class Solution_SWEA_1949_등산로조성_모의SW {
 	static class Point {
-		int r, c, l;
+		int r, c, l, v;
+		boolean construction;
 
-		public Point(int r, int c, int l) {
+		public Point(int r, int c, int l, boolean construction, int v) {
 			this.r = r;
 			this.c = c;
 			this.l = l;
+			this.v = v;
+			this.construction = construction;
 		}
 
 		@Override
 		public String toString() {
-			return "(" + r + ", " + c + ")의 length : " + l;
-		}
-	}
-	
-	static class Construction {
-		int r, c, length;
-		boolean state;
-		
-		public Construction() {
-			this.state = false;
-		}
-		
-		public Construction(int r, int c, boolean state, int length) {
-			this.r = r;
-			this.c = c;
-			this.state = state;
-			this.length = length;
+			return "(" + r + ", " + c + ")의 length : " + l + ", 봉우리 높이 : " + v;
 		}
 	}
 	
@@ -41,8 +28,6 @@ public class Solution_SWEA_1949_등산로조성_모의SW {
 	
 	static boolean[][] isVisited;
 	static int maxLength;
-	
-	static Construction check;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -69,7 +54,6 @@ public class Solution_SWEA_1949_등산로조성_모의SW {
 			for(int i = 0; i < N; i++) {
 				for(int j = 0; j < N; j++) {
 					if(map[i][j] == highestPoint) {
-						check = new Construction();
 						DFS(i, j, 0);
 					}
 				}
@@ -83,27 +67,27 @@ public class Solution_SWEA_1949_등산로조성_모의SW {
 	private static void DFS(int i, int j, int roadLength) {
 		Stack<Point> stack = new Stack<>();
 		
-		stack.add(new Point(i, j, 1));
+		stack.add(new Point(i, j, 1, false, map[i][j]));
 		
-		int[][] tempMap = new int[N][N];
-		for(int r = 0; r < N; r++) {
-			tempMap[r] = map[r].clone();
-		}
+//		int[][] tempMap = new int[N][N];
+//		for(int r = 0; r < N; r++) {
+//			tempMap[r] = map[r].clone();
+//		}
 		
 		while(!stack.isEmpty()) {
 			Point curr = stack.pop();
 			maxLength = Math.max(curr.l, maxLength);
+			System.out.println(curr);
 			
 			for(int d = 0; d < 4; d++) {
 				int r = curr.r + dr[d];
 				int c = curr.c + dc[d];
 				if(r >= 0 && r < N && c >= 0 && c < N) {
-					if(tempMap[curr.r][curr.c] > tempMap[r][c]) {
-						stack.add(new Point(r, c, curr.l+1));
-					} else if(!check.state && tempMap[curr.r][curr.c] > tempMap[r][c]-K) {
-						check = new Construction(r, c, true, curr.l+1);
-						stack.add(new Point(r, c, curr.l+1));
-						tempMap[r][c] = tempMap[curr.r][curr.c]-1;
+					if(curr.v > map[r][c]) {
+						stack.add(new Point(r, c, curr.l+1, curr.construction, map[r][c]));
+					} else if(!curr.construction && curr.v > map[r][c]-K) {
+						stack.add(new Point(r, c, curr.l+1, true, curr.v-1));
+						//tempMap[r][c] = tempMap[curr.r][curr.c]-1;
 					}
 				}
 			}
