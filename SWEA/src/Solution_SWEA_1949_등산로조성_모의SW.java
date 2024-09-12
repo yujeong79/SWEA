@@ -68,17 +68,11 @@ public class Solution_SWEA_1949_등산로조성_모의SW {
 		
 		boolean[][] isVisited = new boolean[N][N];
 		stack.add(new Point(i, j, 1, false, map[i][j]));
-		//isVisited[i][j] = true;
-//		int[][] tempMap = new int[N][N];
-//		for(int r = 0; r < N; r++) {
-//			tempMap[r] = map[r].clone();
-//		}
 		
 		while(!stack.isEmpty()) {
 			Point curr = stack.pop();
 			maxLength = Math.max(curr.l, maxLength);
 			isVisited[curr.r][curr.c] = true;
-			System.out.println(curr);
 			
 			for(int d = 0; d < 4; d++) {
 				int r = curr.r + dr[d];
