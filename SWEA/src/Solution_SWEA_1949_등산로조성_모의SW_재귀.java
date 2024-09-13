@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Solution_SWEA_1949_등산로조성_모의SW {
+public class Solution_SWEA_1949_등산로조성_모의SW_재귀 {
 	static class Point {
 		int r, c, l, v;
 		boolean construction;
@@ -25,6 +25,7 @@ public class Solution_SWEA_1949_등산로조성_모의SW {
 	
 	static int N, K;
 	static int[][] map;
+	static boolean[][] isVisited;
 	
 	static int maxLength;
 	
@@ -53,7 +54,8 @@ public class Solution_SWEA_1949_등산로조성_모의SW {
 			for(int i = 0; i < N; i++) {
 				for(int j = 0; j < N; j++) {
 					if(map[i][j] == highestPoint) {
-						DFS(i, j, 0);
+						isVisited = new boolean[N][N];
+						DFS(i, j, 1, highestPoint, false);
 					}
 				}
 			}
@@ -62,35 +64,23 @@ public class Solution_SWEA_1949_등산로조성_모의SW {
 		} // end of testCase
 		System.out.println(sb);
 	} // end of main
-
-	private static void DFS(int i, int j, int roadLength) {
-		Stack<Point> stack = new Stack<>();
-		boolean[][] isVisited = new boolean[N][N];
-		
+	
+	private static void DFS(int i, int j, int roadLength, int h, boolean construction) {
 		isVisited[i][j] = true;
-		stack.add(new Point(i, j, 1, false, map[i][j]));
+		maxLength = Math.max(roadLength, maxLength);
 		
-		while(!stack.isEmpty()) {
-			Point curr = stack.pop();
-//			if(!isVisited[curr.r][curr.c])
-			maxLength = Math.max(curr.l, maxLength);
-			
-			for(int d = 0; d < 4; d++) {
-				int r = curr.r + dr[d];
-				int c = curr.c + dc[d];
-				if(r >= 0 && r < N && c >= 0 && c < N && !isVisited[r][c]) {
-					if(curr.v > map[r][c]) {
-						isVisited[r][c] = true;
-						stack.add(new Point(r, c, curr.l+1, curr.construction, map[r][c]));
-						//isVisited[r][c] = false;
-					} else if(!curr.construction && curr.v > map[r][c]-K) {
-						isVisited[r][c] = true;
-						stack.add(new Point(r, c, curr.l+1, true, curr.v-1));
-						//isVisited[r][c] = false;
-					}
+		for(int d = 0; d < 4; d++) {
+			int r = i + dr[d];
+			int c = j + dc[d];
+			if(r >= 0 && r < N && c >= 0 && c < N && !isVisited[r][c]) {
+				if(h > map[r][c]) {
+					DFS(r, c, roadLength+1, map[r][c], construction);
+				} else if(!construction && h > map[r][c]-K) {
+					DFS(r, c, roadLength+1, h-1, true);
 				}
 			}
 		}
+		
+		isVisited[i][j] = false;
 	}
-	
 } // end of class
