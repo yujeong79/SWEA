@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Test_동적계획법_동전거스름돈 {
+public class Test_DFS_스택 {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public static void main(String[] args) throws IOException {
