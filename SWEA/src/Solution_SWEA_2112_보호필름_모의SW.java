@@ -34,15 +34,12 @@ public class Solution_SWEA_2112_보호필름_모의SW {
 			testResult = false;
 			
 			int c = 0;
-			for(; !testResult && c <= D; c++) {
-				injection(c); // 0회 ~ D회만큼 약물 투입
+			for(; !testResult && c <= K; c++) {
+				injection(c); // 0회 ~ K회만큼 약물 투입
 				
 			}
 			
-			if(testResult) {
-				sb.append("#" + testCase + " " + c + "\n");
-				break;
-			}
+			sb.append("#" + testCase + " " + (c-1) + "\n");
 			
 		} // end of testCase
 		System.out.println(sb);
