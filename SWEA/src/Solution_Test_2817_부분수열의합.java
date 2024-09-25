@@ -19,7 +19,6 @@ public class Solution_Test_2817_부분수열의합 {
 			
 			count = 0;
 			isVisited = new boolean[N+1];
-			//result = new ArrayList<>();
 			powerSet(0);
 			
 			sb.append("#").append(testCase).append(" ").append(count);
@@ -27,23 +26,23 @@ public class Solution_Test_2817_부분수열의합 {
 		System.out.println(sb);
 	} // end of main
 
-	private static void powerSet(int sum) {
-		if(sum == K) {
-			count++;
-			return;
-		}
-		
-		if(sum > K) {
-			return;
-		}
-		
-		for(int i = 1; i <= N; i++) {
-			if(!isVisited[i]) {
-				isVisited[i] = true;
-				powerSet(sum + i);
-				isVisited[i] = false;
+	private static void powerSet(int idx) {
+		if(idx == N) {
+			List<Integer> list = new ArrayList<>();
+			for(int i = 0; i < N; i++) {
+				if(isVisited[i])
+					list.add(i+1);
 			}
+			System.out.println(list.toString());
+			return;
 		}
+		
+		isVisited[idx] = true;
+		powerSet(idx+1);
+		
+		isVisited[idx] = false;
+		powerSet(idx+1);
+		
 	}
 	
 } // end of class
