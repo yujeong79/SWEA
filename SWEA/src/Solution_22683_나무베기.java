@@ -53,7 +53,7 @@ public class Solution_22683_나무베기 {
         map = new char[N][N];
         treeList = new ArrayList<>();
         isSelected = new boolean[N][N];
-        answer = -1;
+        answer = Integer.MAX_VALUE;
     }
 
     public static void main(String[] args) throws IOException {
@@ -82,6 +82,7 @@ public class Solution_22683_나무베기 {
 
             powerset(0, 0);
 
+            answer = answer == Integer.MAX_VALUE ? -1 : answer;
             sb.append("#" + testCase + " " + answer + "\n");
         } // end of testCase
         System.out.println(sb);
@@ -93,7 +94,7 @@ public class Solution_22683_나무베기 {
         }
 
         if(idx >= tCnt) {
-            BFS();
+            BFS(selectedCnt);
             return;
         }
 
@@ -108,11 +109,13 @@ public class Solution_22683_나무베기 {
 
     // 상 : 0, 좌 : 1, 하 : 2, 우 : 3
     static final int[][] dir = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
-    private static void BFS() {
+    private static void BFS(int selectedCnt) {
+        boolean[][] isVisited = new boolean[N][N];
+
         Queue<Point> queue = new LinkedList<>();
 
         queue.add(new Point(car.r, car.c, 0));
-        map[car.r][car.c] = 'T'; // 방문한 좌표는 'T'로 변경
+        isVisited[car.r][car.c] = true; // 방문한 좌표는 'T'로 변경
 
         while(!queue.isEmpty()) {
             Point curr = queue.poll();
@@ -121,8 +124,13 @@ public class Solution_22683_나무베기 {
                 int nr = curr.r + dir[d][0];
                 int nc = curr.c + dir[d][1];
 
-                if(nr >= 0 && nr < N && nc >= 0 && nc < N && (map[nr][nc] != 'T' || isSelected[nr][nc])) { // T가 아니거나 나무가 베였으면
-                    int controller = curr.controller + 1 + Math.abs(d- car.d);
+                if(nr >= 0 && nr < N && nc >= 0 && nc < N && !isVisited[nr][nc] && (map[nr][nc] != 'T' || isSelected[nr][nc])) { // T가 아니거나 나무가 베였으면
+                    int controller = curr.controller + 1;
+                    if((d == 3 && car.d == 0)&&(d == 0 && car.d == 3)) {
+                        controller += 1;
+                    } else
+                        controller += Math.abs(d- car.d);
+
                     queue.add(new Point(nr, nc, controller));
                     car.d = d;
 
@@ -131,7 +139,7 @@ public class Solution_22683_나무베기 {
                         return;
                     }
 
-                    map[nr][nc] = 'T';
+                    isVisited[nr][nc] = true;
                 }
             }
         }
